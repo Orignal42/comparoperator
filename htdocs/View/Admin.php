@@ -1,61 +1,93 @@
 <?php
-require_once("../Process/Connexion.php");
-include '../Process/Autoload.php';
-include 'Header.php';
+
+    include '../Process/Autoload.php';
+
+    require_once("../Process/Connexion.php");
+
+    include 'Header.php';
+
+    $destination = new DestinationManager($pdo);
+    $allDestinations = $destination->getListGroupByName();
+
+    $tourOp = new TourOperatorManager($pdo);
+    $allTourOp = $tourOp->getList();
 
 
- $destinationManager = new DestinationManager($pdo);
- $toursoperatorsManager = new TourOperatorManager($pdo);
- if (isset($_POST['location']) && isset($_POST['price']) &&  isset($_POST['name']) && isset($_POST['link'])) {
- 
- $toursoperator= new TourOperator(['name'=>$_POST['name'],'link'=>$_POST['link']]);
- $destination= new Destination(['location'=> $_POST['location'] , 'price' => $_POST['price'],'id_tour_operator'=> $toursoperator->getId()]);
- var_dump( $toursoperator);
- var_dump($destination);
- $destinationManager->add($destination);
- $toursoperatorsManager->add($toursoperator);
-}
+    if (isset($_POST['price'])){
+
+        $newDestination = new Destination(['location'=>$_POST['location'], 'id_tour_operator'=>$_POST['to'], 'price'=>$_POST['price']]);
+        $operator = new TourOperator(['id'=>$_POST['to']]);
+        $destination->add($newDestination, $operator);
+    
+    }
 
 ?>
 
+<!-- FORM 1 -->
 
+<!-- FORM 2 -->
 
+<!-- FORM 3 SELECT -->
 
-<div class="container-form">
-      <form action="" method="post">
-         <div class="formulaire">
-          <div class="labels">
-            <label>location</label>
-                     
-          </div>
-          <div class="rightTab">
-          <select name="location">
+<form method="post" action="Admin.php">
+                    
+    <div class="labels">
+        <label>* Location :</label>
+    </div>
+    <div class="rightTab">
+        <select name="location">
             <option value="">Please choose a location</option>
-            <option value="corse">Corse</option>
-            <option value="sardaigne">Sardaigne</option>
-            <option value="ny">New York</option>
-            <option value="paris">Paris</option>
-            <option value="vancouver">Vancouver</option>
-            <option value="london">London</option>
-            <option value="maroco">Maroco</option>
-            <option value="tokyo">Tokyo</option>
-            <option value="venise">Venise</option>
-            <option value="barcelona">Barcelona</option>
-        </select>
-          </div>
+
+            <?php foreach ($allDestinations as $rowDestination) { ?>
+
+                <option value="<?=$rowDestination->getLocation()?>"><?=$rowDestination->getLocation()?></option>
+
+            <?php } ?>
             
-            Prix: <input type="text" name="price" maxlength="240" style="margin-bottom: 10px;"/><br>
-            Tour Operator : <input type="text" name="name" maxlength="240" style="margin-bottom: 10px;"/><br>
-            Link : <input type="text" name="link" maxlength="240" style="margin-bottom: 10px;"/><br>                      
-            <input type="submit"  name="submit" style="margin-bottom: 10px">
-         </div>
-      </form>
-     
-</div>
+        </select>
+    </div>     
+
+    <div class="labels">
+        <label >* TO :</label>
+    </div>
+    <div class="rightTab">
+        <select name="to">
+            <option value="">Please choose a TO</option>
+
+            <?php foreach ($allTourOp as $rowTourOp) { ?>
+
+                <option value="<?=intval($rowTourOp->getId())?>"><?=$rowTourOp->getName()?></option>
+
+            <?php } ?>
+        </select>
+        
+    </div>
+
+    
+
+            <div class="labels">
+                <label for="price">* Price :</label>
+            </div>
+            <div class="rightTab">
+                <input type="text" name="price" required placeholder="600$">
+            </div></br>      
+         <input type="submit" id='submit' value='Créer'></br>
+        </form>
+            <form action="Admin.php" method="post">
+            <input type="text" value="Location" name="location">
+            <input type="text" value="Price"    name="price">
+            <input type="hidden" value=""       name="<?php ($rowTourOp->getId()) ?>">
+            <input type="submit" id='submit' value='Créer destination'>
+            </form></br>
+            <form action="Admin.php"  method="post">
+            <input type="text" value="TO" name="" >
+            <input type="text" value="link">
+            <input type="submit" id='submit' value='Créer TO'>
+            </form> 
+
 
 <?php
-include 'Footer.php';
+
+    include 'Footer.php';
+
 ?>
-
-
-

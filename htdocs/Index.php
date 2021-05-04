@@ -11,7 +11,7 @@
   <?php
   //Pour obtenir depuis la base de données
   $destination = new DestinationManager($pdo);
-  $allDestinations = $destination->getList();
+  $allDestinations = $destination->getListGroupByName();
   ?>
   <?php foreach ($allDestinations as $rowDestination){?>
     <div class="card" style="width: 18rem;">

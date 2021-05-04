@@ -80,6 +80,32 @@ class DestinationManager {
       return $arrayListdestination;
   
     }
-  
+
+    public function createDestination($destination){
+      $locationStatement = $this->pdo->prepare("INSERT INTO destination (location, price, id_tour_operator) VALUE (:location, :price, :id_tour_operator)");
+      $locationStatement->bindValue("location", $destination->getLocation(), PDO::PARAM_STR);
+      $locationStatement->bindValue("price", $destination->getPrice(), PDO::PARAM_INT);
+      $locationStatement->bindValue("id_tour_operator", $destination->getId_tour_operator(), PDO::PARAM_INT);
+      $locationStatement->execute();
 
   }
+
+  public function getListGroupByName(){
+    $q = $this->db->prepare('SELECT location, images, description FROM destinations GROUP BY location, images, description');
+    $destinations = [];
+    $q->execute();
+    while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+    {
+      array_push($destinations, new Destination ($donnees));
+    }
+      return $destinations;
+  }
+
+
+
+
+
+
+
+  
+}
