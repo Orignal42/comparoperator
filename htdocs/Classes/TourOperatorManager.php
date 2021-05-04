@@ -13,14 +13,11 @@ class TourOperatorManager {
     {
       
 
-      $q = $this->db->prepare('INSERT INTO touroperator(name, grade, link, is_premium) VALUES(:name, :grade, :link, :is_premium)');
-      
-      $q->bindValue(':', $tourOperator->getId());
+      $q = $this->db->prepare('INSERT INTO tour_operators(name, link) VALUES(:name,  :link,)');
+           
       $q->bindValue(':name', $tourOperator->getName());
-      $q->bindValue(':grade', $tourOperator->getGrade());
-      $q->bindValue(':link',$tourOperator->getLink());
-      $q->bindValue(':IsPremium',$tourOperator->isIsPremimum());
-      $q->execute();
+            $q->bindValue(':link',$tourOperator->getLink());
+            $q->execute();
       
       $tourOperator->hydrate([
         'id' => $this->db->lastInsertId()
@@ -28,6 +25,10 @@ class TourOperatorManager {
     }
 
 
+
+
+
+   
 }
 
 

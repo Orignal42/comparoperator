@@ -1,0 +1,16 @@
+body{
+    background-color: black;
+    color: green;
+}
+
+
+.container{
+text-align: center;
+margin-top: 4rem;
+
+}
+
+.cards{
+margin: 2%;
+
+}

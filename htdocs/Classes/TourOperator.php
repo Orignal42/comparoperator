@@ -1,10 +1,10 @@
 <?php
 class TourOperator{
-    protected int $id;
-    protected string $name;
-    protected int $grade;
-    protected int $link;
-    protected bool $is_premium;
+    protected  $id;
+    protected  $name;
+    protected  $grade;
+    protected  $link;
+    protected  $is_premium;
     
    
 
@@ -29,7 +29,7 @@ class TourOperator{
         }
     }
 
-    public function getId (){
+    public function getId(){
         return $this->id;
     }
 
@@ -43,7 +43,7 @@ class TourOperator{
     }
 
     public function setName ($name){
-        $this->id = $name;
+        $this->name = $name;
     }
     public function getGrade (){
         return $this->grade;
@@ -64,7 +64,7 @@ class TourOperator{
         return $this->ispremium;
     }
 
-    public function setIsPremimum ($is_premium){
+    public function setIs_premimum ($is_premium){
         $this->ispremium = $is_premium;
     }
 }

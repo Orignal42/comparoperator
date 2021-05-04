@@ -1,9 +1,11 @@
 <?php
 class Review{
-    protected int $id;
-    protected string $message;
-    protected string $author;
-    protected int $id_tour_operator;
+    
+    
+    protected  $id;
+    protected  $message;
+    protected  $author;
+    protected  $id_tour_operator;
     
    
 
@@ -53,11 +55,11 @@ class Review{
     }
 
 
-    public function getIdTourOperator (){
+    public function get_IdTour_Operator (){
         return $this->id_tour_operator;
     }
 
-    public function setIdTourOperator ($id_tour_operator){
+    public function setId_Tour_Operator ($id_tour_operator){
         $this->id_tour_operator = $id_tour_operator;
     }
 }

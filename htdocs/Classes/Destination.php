@@ -1,9 +1,11 @@
 <?php
 class Destination{
-    protected int $id;
-    protected string $location;
-    protected int $price;
-    protected int $id_tour_operator;
+    protected  $id;
+    protected  $location;
+    protected  $price;
+    protected  $id_tour_operator;
+    protected  $img;
+    protected  $description;
     
    
 
@@ -21,13 +23,13 @@ class Destination{
         
             $method = 'set'.ucfirst($key);
         
-        if (method_exists($this, $method))
-        {
-          $this->$method($value);
-        }
+            if (method_exists($this, $method))
+            {
+                $this->$method($value);
+            }
         }
     }
-    public function getId (){
+    public function getId(){
         return $this->id;
     }
 
@@ -54,11 +56,25 @@ class Destination{
         $this->price = $price;
     }
 
-    public function getIdTourOperator (){
+    public function getId_tour_operator (){
         return $this->id_tour_operator;
     }
 
-    public function setIdTourOperator ($id_tour_operator){
+    public function setId_tour_operator ($id_tour_operator){
         $this->id_tour_operator = $id_tour_operator;
     }
+    public function getImages (){
+        return $this->img;
+    }
+
+    public function setImages ($img){
+    $this->img = $img;
+        }
+    public function getDescription (){
+    return $this->description;
+        }
+
+    public function setDescription ($description){
+    $this->description = $description;
+        }
 }
