@@ -17,7 +17,7 @@
   <div class=cartes>
  
     <div class="card" style="width: 18rem;">
-
+    
     <img class="card-img-top" src="<?php echo $rowDestination->getImages()?>" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title"><?php echo 'Destination'." ".$rowDestination->getLocation(); ?></h5>
@@ -28,6 +28,7 @@
     
   </div>
 </div>
+<div class="col-1"></div>
 <?php  } ?>
 </div>
 

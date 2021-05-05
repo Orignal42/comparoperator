@@ -23,15 +23,13 @@ include 'Header.php';
     } 
 ?>
 <?php 
-$destination = new DestinationManager($pdo);
-$allDestinations = $destination->getListGroupByName();
+
 $allreview= new ReviewManager($pdo);
 $tourOp = new TourOperatorManager($pdo);
 $allTourOp = $tourOp->getList();
 if (isset($_POST['message'])){
-    $newReview = new Review(['author'=>$_POST['author'], 'message'=>$_POST['message']]);
-        
-        
+    $newReview = new Review(['author'=>$_POST['author'], 'message'=>$_POST['message'], 'id_tour_operator'=>$_POST['to']]);
+         
     
     } ?>
 
@@ -40,10 +38,10 @@ if (isset($_POST['message'])){
     <input type="text" name="author" required>
     <label for="message">Votre message:</label>
     <input type="text" name="message" required>
-    <div class="labels">
-        <label >* TO :</label>
-    </div>
-    <div class="rightTab">
+ 
+        <label >TO :</label>
+    
+    
         <select name="to">
             <option value="">Please choose a TO</option>
             <?php foreach ($allTourOp as $rowTourOp) { ?>
@@ -51,7 +49,7 @@ if (isset($_POST['message'])){
 
             <?php } ?>
         </select>
-    </div>
+    
     <button>Soumettre</button>
 
 
