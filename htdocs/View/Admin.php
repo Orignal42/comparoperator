@@ -128,9 +128,7 @@
     <div class="rightTab">
         <select name="to">
             <option value="">Please choose a TO</option>
-
             <?php foreach ($allTourOp as $rowTourOp) { ?>
-
                 <option value="<?=intval($rowTourOp->getId())?>"><?=$rowTourOp->getName()?></option>
 
             <?php } ?>
@@ -144,10 +142,7 @@
     </div>
     <div class="rightTab">
         <input type="text" name="price" required placeholder="600$">
-    </div>
-
-    
-
+    </div> 
         <input type="submit" id='submit' value='Submit'>
 
 </form>
