@@ -4,8 +4,9 @@ body{
 }
 
 
-.container{
-text-align: center;
+.cartes{
+display: flex;
+flex-flow: row wrap;
 margin-top: 4rem;
 
 }

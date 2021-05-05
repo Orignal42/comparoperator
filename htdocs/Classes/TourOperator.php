@@ -1,13 +1,12 @@
-<?php
-class TourOperator{
-    protected  $id;
-    protected  $name;
-    protected  $grade;
-    protected  $link;
-    protected  $is_premium;
-    
-   
+<?php 
 
+class TourOperator {
+    
+    protected $id;
+    protected  $name;
+    protected  $link;
+    protected  $grade;
+    protected  $is_premium;
 
     /* CONSTRUCT */
 
@@ -29,7 +28,7 @@ class TourOperator{
         }
     }
 
-    public function getId(){
+    public function getId (){
         return $this->id;
     }
 
@@ -37,19 +36,12 @@ class TourOperator{
         $this->id = $id;
     }
 
-
     public function getName (){
         return $this->name;
     }
 
-    public function setName ($name){
+    public function setName  ($name){
         $this->name = $name;
-    }
-    public function getGrade (){
-        return $this->grade;
-    }
-    public function setGrade ($grade){
-        $this->grade = $grade;
     }
 
     public function getLink (){
@@ -59,12 +51,22 @@ class TourOperator{
     public function setLink ($link){
         $this->link = $link;
     }
-    
-    public function isIsPremimum (){
-        return $this->ispremium;
+
+    public function getGrade (){
+        return $this->grade;
     }
 
-    public function setIs_premimum ($is_premium){
-        $this->ispremium = $is_premium;
+    public function setGrade ($grade){
+        $this->grade = $grade;
     }
+
+    public function isIsPremium (){
+        return $this->is_premium;
+    }
+
+    public function setIs_premium ($is_premium){
+        $this->is_premium = $is_premium;
+    }
+
+    
 }

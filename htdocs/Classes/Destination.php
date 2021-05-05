@@ -1,13 +1,14 @@
-<?php
-class Destination{
-    protected  $id;
-    protected  $location;
-    protected  $price;
-    protected  $id_tour_operator;
-    protected  $img;
-    protected  $description;
+<?php 
+
+class Destination {
+
     
-   
+    protected $id;
+    protected $location;
+    protected $images;
+    protected $description;
+    protected $price;
+    protected $id_tour_operator;
 
 
     /* CONSTRUCT */
@@ -23,13 +24,16 @@ class Destination{
         
             $method = 'set'.ucfirst($key);
         
-            if (method_exists($this, $method))
-            {
-                $this->$method($value);
-            }
+        if (method_exists($this, $method))
+        {
+          $this->$method($value);
+        }
         }
     }
-    public function getId(){
+
+    /* GETTER SETTER */
+
+    public function getId (){
         return $this->id;
     }
 
@@ -37,6 +41,21 @@ class Destination{
         $this->id = $id;
     }
 
+    public function getImages (){
+        return $this->images;
+    }
+
+    public function setImages ($images){
+        $this->images = $images;
+    }
+
+    public function getDescription (){
+        return $this->description;
+    }
+
+    public function setDescription ($description){
+        $this->description = $description;
+    }
 
     public function getLocation (){
         return $this->location;
@@ -45,8 +64,6 @@ class Destination{
     public function setLocation ($location){
         $this->location = $location;
     }
-   
-
 
     public function getPrice (){
         return $this->price;
@@ -56,25 +73,12 @@ class Destination{
         $this->price = $price;
     }
 
-    public function getId_tour_operator (){
+    public function getIdTourOperator (){
         return $this->id_tour_operator;
     }
 
     public function setId_tour_operator ($id_tour_operator){
         $this->id_tour_operator = $id_tour_operator;
     }
-    public function getImages (){
-        return $this->img;
-    }
 
-    public function setImages ($img){
-    $this->img = $img;
-        }
-    public function getDescription (){
-    return $this->description;
-        }
-
-    public function setDescription ($description){
-    $this->description = $description;
-        }
 }

@@ -55,7 +55,7 @@ class Review{
     }
 
 
-    public function get_IdTour_Operator (){
+    public function getId_Tour_Operator (){
         return $this->id_tour_operator;
     }
 
