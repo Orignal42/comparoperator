@@ -151,7 +151,5 @@
 
 
 <?php
-
     include 'Footer.php';
-
 ?>

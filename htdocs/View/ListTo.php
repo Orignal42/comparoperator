@@ -8,6 +8,7 @@ include 'Header.php';
 <?php
  $test = new DestinationManager($pdo);
  $testi= new ReviewManager($pdo);
+ $tourOp = new TourOperatorManager($pdo);
     if (isset($_GET['destination'])) {
        $arrayDestination = $test->getDestinationByLocation($_GET['destination']);
      
@@ -15,21 +16,18 @@ include 'Header.php';
        foreach ($arrayDestination as $destination){
            $to =  $test->getDestibyTo($destination);
             $reviews =  $testi->getReviewByTo($to);
-           echo $to->getName().' '.$destination->getPrice()." "."Euros"." "."avec pour note"." ".$to->getGrade();
+           echo $to->getName().' '.$destination->getPrice()." "."Euros"." "."avec pour note"." ".$to->getGrade()."/5";
            foreach ($reviews as $review) {
                echo "<br>".$to->getName()." ".$review->getAuthor()." ". $review->getMessage()."<br>";
            }
         }
     } 
-?>
-<?php 
 
-$allreview= new ReviewManager($pdo);
-$tourOp = new TourOperatorManager($pdo);
 $allTourOp = $tourOp->getList();
 if (isset($_POST['message'])){
-    $newReview = new Review(['author'=>$_POST['author'], 'message'=>$_POST['message'], 'id_tour_operator'=>$_POST['to']]);
-         
+    $newreview=new Review (['author'=>$_POST['author'],'message'=>$_POST['message']]);
+    $newOperator = new TourOperator(['id'=>$_POST['to']]);
+    $testi->add($newreview, $newOperator);
     
     } ?>
 
@@ -39,14 +37,12 @@ if (isset($_POST['message'])){
     <label for="message">Votre message:</label>
     <input type="text" name="message" required>
  
-        <label >TO :</label>
-    
-    
+        <label >TO :</label> 
         <select name="to">
             <option value="">Please choose a TO</option>
             <?php foreach ($allTourOp as $rowTourOp) { ?>
-                <option value="<?=intval($rowTourOp->getId())?>"><?=$rowTourOp->getName()?></option>
-
+              <option value="<?=intval($rowTourOp->getId())?>"><?=$rowTourOp->getName()?></option>
+                    
             <?php } ?>
         </select>
     
